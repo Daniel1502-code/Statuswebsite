@@ -1,8 +1,5 @@
 {% extends "navbar.html" %}
-
-
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -16,186 +13,160 @@
          <ol class="status-list">
             <li class="status-item">
                <strong>Google</strong>
-               {% if name1 == 200 %}
+               {% if google_response_code == 200 %}
                <p class="status-success">Google running!🟩</p>
-
                <div class="tooltip">For more info hover over me!
-                <span class="tooltiptext">Tooltip text</span>
-              </div>
-               
+                  <span class="tooltiptext">Name: {{ google_name }} hostname: {{ google_hostname }} response code: {{ google_response_code }}</span>
+               </div>
                {% else %}
                <p class="status-failure">Google down!🟥</p>
-               <p>Down time: {{ downtime }}</p>
-               <p>Status Code: {{ name1 }}</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ google_name }} hostname: {{ google_hostname }} response code: {{ google_response_code }}</span>
+               </div>
                {% endif %}
             </li>
             <li>
                <strong>YouTube</strong>
-               {% if name2 == 200 %}
+               {% if youtube_response_code == 200 %}
                <p class="status-success">Youtube running!🟩</p>
-
                <div class="tooltip">For more info hover over me!
-                <span class="tooltiptext">Tooltip text</span>
-              </div>
-
+                  <span class="tooltiptext">Name: {{ youtube_name }} hostname: {{ youtube_hostname }} response code: {{ youtube_response_code }}</span>
+               </div>
                {% else %}
                <p class="status-failure">Youtube down!🟥</p>
-               <p>Down time: {{ downtime }}</p>
-               <p>Status Code: {{ name2 }}</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ youtube_name }} hostname: {{ youtube_hostname }} response code: {{ youtube_response_code }}</span>
+               </div>
                {% endif %}
             </li>
             <li>
                <strong>Steam</strong>
-               {% if name3 == 200 %}
+               {% if steam_response_code == 200 %}
                <p class="status-success">Steam running!🟩</p>
-
                <div class="tooltip">For more info hover over me!
-                <span class="tooltiptext">Tooltip text</span>
-              </div>
-
+                  <span class="tooltiptext">Name: {{ steam_name }} hostname: {{ steam_hostname }} response code: {{ steam_response_code }}</span>
+               </div>
                {% else %}
                <p class="status-failure">Steam down!🟥</p>
-               <p>Down time: {{ downtime }}</p>
-               <p>Status Code: {{ name3 }}</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ steam_name }} hostname: {{ steam_hostname }} response code: {{ steam_response_code }}</span>
+               </div>
                {% endif %}
             </li>
             <li>
                <strong>Twitter</strong>
-               {% if name4 == 200 %}
+               {% if twitter_response_code == 200 %}
                <p class="status-success">Twitter running!🟩</p>
-
                <div class="tooltip">For more info hover over me!
-                <span class="tooltiptext">Tooltip text</span>
-              </div>
-
+                  <span class="tooltiptext">Name: {{ twitter_name }} hostname: {{ twitter_hostname }} response code: {{ twitter_response_code }}</span>
+               </div>
                {% else %}
                <p class="status-failure">Twitter down!🟥</p>
-               <p>Down time: {{ downtime }}</p>
-               <p>Status Code: {{ name4 }}</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ twitter_name }} hostname: {{ twitter_hostname }} response code: {{ twitter_response_code }}</span>
+               </div>
                {% endif %}
             </li>
             <li>
-                <strong>TEST WEBSITE</strong>
-                {% if test == 200 %}
-                <p class="status-success">Test Website running!🟩</p>
-
-                <div class="tooltip">For more info hover over me!
-                    <span class="tooltiptext">Tooltip text</span>
-                  </div>
-                  
-                {% else %}
-                <p class="status-failure">Test Website down!🟥</p>
-                <p>Down time: {{ downtime }}</p>
-                <p>Status Code: {{ test }}</p>
-                {% endif %}
+               <strong>TEST WEBSITE</strong>
+               {% if test_response_code == 200 %}
+               <p class="status-success">Test Website running!🟩</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ test_name }} hostname: {{ test_hostname }} response code: {{ test_response_code }}</span>
+               </div>
+               {% else %}
+               <p class="status-failure">Test Website down!🟥</p>
+               <div class="tooltip">For more info hover over me!
+                  <span class="tooltiptext">Name: {{ test_name }} hostname: {{ test_hostname }} response code: {{ test_response_code }}</span>
+               </div>
+               {% endif %}
             </li>
          </ol>
       </div>
    </body>
 </html>
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-  body {
-      font-family: 'Space Mono', monospace;
-      background-color: #323232; /* Set a background color for the entire page */
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
-      padding: 32px;
-      margin: 60px auto;
-      border: 1px solid #323232;
-      box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.06);
-  }
-
-  .container {
-      background-color: 0D7377; /* Add a background color to the container */
-      padding: 20px;
-      border-radius: 88px;
-  }
-
-  h1 {
-      text-align: center;
-  }
-
-  .status-list {
-      list-style: none;
-      padding: 0;
-  }
-
-  .status-item {
-      background-color: 0D7377; /* Add background color to list items */
-      border: 1px solid 0D7377;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      padding: 16px;
-  }
-
-
-  .status-item strong {
-      font-weight: bold;
-  }
-
-  .status-success {
-      color: #4CAF50; /* Green color for success status */
-  }
-
-  .status-failure {
-      color: #810900; /* Red color for failure status */
-  }
-
-  /* Add a class to the downtime information paragraphs */
-  .downtime-info {
-      display: none; /* Initially hide the downtime information */
-  }
-
-  /* Style for the status items */
-  .status-item {
-      /* ... (your existing styles) */
-      position: relative; /* Add this to make absolute positioning relative to .status-item */
-  }
-
-  /* Style for downtime information when the status item is hovered */
-  .status-item:hover .downtime-info {
-      display: block; /* Show downtime info when status item is hovered */
-      position: absolute; /* Position it absolutely relative to .status-item */
-      top: 100%; /* Position it below the status item */
-      left: 0; /* Align it with the left edge of the status item */
-      background-color: #ffffff; /* Add a background color */
-      padding: 8px; /* Add padding for spacing */
-      border: 1px solid #eee; /* Add a border for separation */
-      border-radius: 4px; /* Add some rounded corners */
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
-      z-index: 1; /* Ensure it's displayed above other content */
-  }
-
-   
-  
-    .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-    }
-
-    .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    }
-
-    .tooltip:hover .tooltiptext {
-    visibility: visible;
-    }
-
+   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+   body {
+   font-family: 'Space Mono', monospace;
+   background-color: #323232; /* Set a background color for the entire page */
+   display: flex;
+   flex-direction: column;
+   max-width: 500px;
+   padding: 32px;
+   margin: 60px auto;
+   border: 1px solid #323232;
+   box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.06);
+   }
+   .container {
+   background-color: 0D7377; /* Add a background color to the container */
+   padding: 20px;
+   border-radius: 88px;
+   }
+   h1 {
+   text-align: center;
+   }
+   .status-list {
+   list-style: none;
+   padding: 0;
+   }
+   .status-item {
+   background-color: 0D7377; /* Add background color to list items */
+   border: 1px solid 0D7377;
+   border-radius: 8px;
+   margin-bottom: 16px;
+   padding: 16px;
+   }
+   .status-item strong {
+   font-weight: bold;
+   }
+   .status-success {
+   color: #4CAF50; /* Green color for success status */
+   }
+   .status-failure {
+   color: #810900; /* Red color for failure status */
+   }
+   /* Add a class to the downtime information paragraphs */
+   .downtime-info {
+   display: none; /* Initially hide the downtime information */
+   }
+   /* Style for the status items */
+   .status-item {
+   /* ... (your existing styles) */
+   position: relative; /* Add this to make absolute positioning relative to .status-item */
+   }
+   /* Style for downtime information when the status item is hovered */
+   .status-item:hover .downtime-info {
+   display: block; /* Show downtime info when status item is hovered */
+   position: absolute; /* Position it absolutely relative to .status-item */
+   top: 100%; /* Position it below the status item */
+   left: 0; /* Align it with the left edge of the status item */
+   background-color: #ffffff; /* Add a background color */
+   padding: 8px; /* Add padding for spacing */
+   border: 1px solid #eee; /* Add a border for separation */
+   border-radius: 4px; /* Add some rounded corners */
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+   z-index: 1; /* Ensure it's displayed above other content */
+   }
+   .tooltip {
+   position: relative;
+   display: inline-block;
+   border-bottom: 1px dotted black;
+   }
+   .tooltip .tooltiptext {
+   visibility: hidden;
+   width: 250px;
+   background-color: black;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+   /* Position the tooltip */
+   position: absolute;
+   z-index: 1;
+   }
+   .tooltip:hover .tooltiptext {
+   visibility: visible;
+   }
 </style>
-
 {% endblock %}
