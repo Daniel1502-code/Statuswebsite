@@ -16,15 +16,6 @@ test_name = test_hostname = test_status = test_response_code = test_response_tim
 
 @app.route("/")
 def main():
-    url_youtube = "https://www.youtube.com"
-    url_twitter = "https://twitter.com/"
-    url_google = "https://www.google.com"
-    url_steam = "https://store.steampowered.com/"
-    url_test = "http://danielduesendieb.pythonanywhere.com"
-
-    def downtime(website):
-        now = datetime.datetime.now()
-        print(website, "is Down... Datetime", now)
 
     def jsonsearch():
         global google_name, google_hostname, google_status, google_response_code, google_response_time_ms
