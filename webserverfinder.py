@@ -2,6 +2,20 @@ import requests
 import time
 import json
 
+# Settings
+
+print("MODE SELECTION")
+select = input("LOCAL MODE Y/N: ")
+if select == "Y":
+    local = True
+elif select == "N":
+    local = False
+else:
+    print("wrong letter!")
+    exit()
+
+# Program
+
 print("Program Starting!")
 
 name1_status = ""
@@ -42,83 +56,105 @@ while True:
     twitter_ms = googler_request.elapsed.total_seconds()
     test_ms = googler_request.elapsed.total_seconds()
 
-    print("Writing Data!")
+    if local:
+        print("Writing Data!")
 
+        dictionary = {
+            "web_servers": [
+                {
+                    "name": "google",
+                    "hostname": url_google,
+                    "status": name1_status,
+                    "response_code": name1,
+                    "response_time_ms": google_ms
+                },
+                {
+                    "name": "youtube",
+                    "hostname": url_youtube,
+                    "status": name2_status,
+                    "response_code": name2,
+                    "response_time_ms": youtube_ms
+                },
+                {
+                    "name": "steam",
+                    "hostname": url_steam,
+                    "status": name3_status,
+                    "response_code": name3,
+                    "response_time_ms": steam_ms
+                },
+                {
+                    "name": "twitter",
+                    "hostname": url_twitter,
+                    "status": name4_status,
+                    "response_code": name4,
+                    "response_time_ms": twitter_ms
+                },
+                {
+                    "name": "Server Test",
+                    "hostname": url_test,
+                    "status": test_status,
+                    "response_code": test,
+                    "response_time_ms": test_ms
+                }
+            ]
+        }
+        print("Writing Data done!")
 
-    def OnlineChecker():
-        global name1_status, name2_status, name3_status, name4_status, test_status
+        #  json
+        json_object = json.dumps(dictionary, indent=4)
 
-        if name1 == 200:
-            name1_status = "Online"
-        else:
-            name1_status = "Offline"
-        if name2 == 200:
-            name2_status = "Online"
-        else:
-            name2_status = "Offline"
-        if name3 == 200:
-            name3_status = "Online"
-        else:
-            name3_status = "Offline"
-        if name4 == 200:
-            name4_status = "Online"
-        else:
-            name4_status = "Offline"
-        if test == 200:
-            test_status = "Online"
-        else:
-            test_status = "Offline"
+        # Writing to data.json
+        with open("data.json", "w") as outfile:
+            outfile.write(json_object)
 
+    elif not local:
 
-    OnlineChecker()
+        r = requests.post('https://danielduesendieb.pythonanywhere.com/json', json={
+            "web_servers": [
+                {
+                    "name": "google",
+                    "hostname": url_google,
+                    "status": name1_status,
+                    "response_code": name1,
+                    "response_time_ms": google_ms
+                },
+                {
+                    "name": "youtube",
+                    "hostname": url_youtube,
+                    "status": name2_status,
+                    "response_code": name2,
+                    "response_time_ms": youtube_ms
+                },
+                {
+                    "name": "steam",
+                    "hostname": url_steam,
+                    "status": name3_status,
+                    "response_code": name3,
+                    "response_time_ms": steam_ms
+                },
+                {
+                    "name": "twitter",
+                    "hostname": url_twitter,
+                    "status": name4_status,
+                    "response_code": name4,
+                    "response_time_ms": twitter_ms
+                },
+                {
+                    "name": "Server Test",
+                    "hostname": url_test,
+                    "status": test_status,
+                    "response_code": test,
+                    "response_time_ms": test_ms
+                }
+            ]
+        })
+        response = r
 
-    dictionary = {
-        "web_servers": [
-            {
-                "name": "google",
-                "hostname": url_google,
-                "status": name1_status,
-                "response_code": name1,
-                "response_time_ms": google_ms
-            },
-            {
-                "name": "youtube",
-                "hostname": url_youtube,
-                "status": name2_status,
-                "response_code": name2,
-                "response_time_ms": youtube_ms
-            },
-            {
-                "name": "steam",
-                "hostname": url_steam,
-                "status": name3_status,
-                "response_code": name3,
-                "response_time_ms": steam_ms
-            },
-            {
-                "name": "twitter",
-                "hostname": url_twitter,
-                "status": name4_status,
-                "response_code": name4,
-                "response_time_ms": twitter_ms
-            },
-            {
-                "name": "Server Test",
-                "hostname": url_test,
-                "status": test_status,
-                "response_code": test,
-                "response_time_ms": test_ms
-            }
-        ]
-    }
-    print("Writing Data done!")
-
-    #  json
-    json_object = json.dumps(dictionary, indent=4)
-
-    # Writing to data.json
-    with open("data.json", "w") as outfile:
-        outfile.write(json_object)
-    time.sleep(30)
+        # Print response status code, content type, and response text
+        print('Response Status Code:', response.status_code)
+        print('Content-Type:', response.headers.get('Content-Type'))
+        print('Response Text:', response.text)
 
     print("Waiting 30 Secs")
+
+    time.sleep(30)
