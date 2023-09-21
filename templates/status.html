@@ -25,7 +25,7 @@
                </div>
                {% endif %}
             </li>
-            <li>
+            <li class="status-item">
                <strong>YouTube</strong>
                {% if youtube_response_code == 200 %}
                <p class="status-success">Youtube running!🟩</p>
@@ -39,7 +39,7 @@
                </div>
                {% endif %}
             </li>
-            <li>
+            <li class="status-item">
                <strong>Steam</strong>
                {% if steam_response_code == 200 %}
                <p class="status-success">Steam running!🟩</p>
@@ -53,7 +53,7 @@
                </div>
                {% endif %}
             </li>
-            <li>
+            <li class="status-item">
                <strong>Twitter</strong>
                {% if twitter_response_code == 200 %}
                <p class="status-success">Twitter running!🟩</p>
@@ -67,7 +67,7 @@
                </div>
                {% endif %}
             </li>
-            <li>
+            <li class="status-item">
                <strong>TEST WEBSITE</strong>
                {% if test_response_code == 200 %}
                <p class="status-success">Test Website running!🟩</p>
@@ -124,28 +124,6 @@
    }
    .status-failure {
    color: #810900; /* Red color for failure status */
-   }
-   /* Add a class to the downtime information paragraphs */
-   .downtime-info {
-   display: none; /* Initially hide the downtime information */
-   }
-   /* Style for the status items */
-   .status-item {
-   /* ... (your existing styles) */
-   position: relative; /* Add this to make absolute positioning relative to .status-item */
-   }
-   /* Style for downtime information when the status item is hovered */
-   .status-item:hover .downtime-info {
-   display: block; /* Show downtime info when status item is hovered */
-   position: absolute; /* Position it absolutely relative to .status-item */
-   top: 100%; /* Position it below the status item */
-   left: 0; /* Align it with the left edge of the status item */
-   background-color: #ffffff; /* Add a background color */
-   padding: 8px; /* Add padding for spacing */
-   border: 1px solid #eee; /* Add a border for separation */
-   border-radius: 4px; /* Add some rounded corners */
-   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
-   z-index: 1; /* Ensure it's displayed above other content */
    }
    .tooltip {
    position: relative;
