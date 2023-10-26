@@ -150,7 +150,6 @@ while True:
         })
         response = r
 
-        # Print response status code, content type, and response text
         print('Response Status Code:', response.status_code)
         print('Content-Type:', response.headers.get('Content-Type'))
         print('Response Text:', response.text)
