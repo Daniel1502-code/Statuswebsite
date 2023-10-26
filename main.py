@@ -1,5 +1,4 @@
-from flask import Flask, render_template
-import datetime
+from flask import Flask, render_template, request, jsonify
 import json
 
 app = Flask(__name__)
@@ -7,16 +6,15 @@ app = Flask(__name__)
 with open('data.json') as f:
     data = json.load(f)
 
-# Define all the global variables with initial values
 google_name = google_hostname = google_status = google_response_code = google_response_time_ms = ""
 youtube_name = youtube_hostname = youtube_status = youtube_response_code = youtube_response_time_ms = ""
 steam_name = steam_hostname = steam_status = steam_response_code = steam_response_time_ms = ""
 twitter_name = twitter_hostname = twitter_status = twitter_response_code = twitter_response_time_ms = ""
 test_name = test_hostname = test_status = test_response_code = test_response_time_ms = ""
 
+
 @app.route("/")
 def main():
-
     def jsonsearch():
         global google_name, google_hostname, google_status, google_response_code, google_response_time_ms
         global youtube_name, youtube_hostname, youtube_status, youtube_response_code, youtube_response_time_ms
@@ -49,7 +47,7 @@ def main():
                 twitter_status = server["status"]
                 twitter_response_code = server["response_code"]
                 twitter_response_time_ms = server["response_time_ms"]
-            if server["name"] == "test":
+            if server["name"] == "Server Test":
                 test_name = server["name"]
                 test_hostname = server["hostname"]
                 test_status = server["status"]
@@ -87,17 +85,39 @@ def main():
         google_response_time_ms=google_response_time_ms,
     )
 
-@app.route("/edit")
-def edit():
-    return "Still in construction!"
+
+@app.route('/json', methods=['POST'])
+def json_endpoint():  # Rename the function
+    try:
+        content = request.json
+        if content is None:
+            return jsonify({"error": "Invalid JSON data"}), 400
+
+        json_object = json.dumps(content, indent=4)
+
+        # Writing to data.json
+        with open("data.json", "w") as outfile:
+            outfile.write(json_object)
+
+        return "Data received!"
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/seejson")
+def seejson():
+    return data
+
 
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
+
 @app.route("/about")
 def about():
     return render_template("about.html")
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
