@@ -1,1 +1,39 @@
-
+{
+    "web_servers": [
+        {
+            "name": "google",
+            "hostname": "https://www.google.com",
+            "status": "",
+            "response_code": 200,
+            "response_time_ms": 0.119936
+        },
+        {
+            "name": "youtube",
+            "hostname": "https://www.youtube.com",
+            "status": "",
+            "response_code": 200,
+            "response_time_ms": 0.119936
+        },
+        {
+            "name": "steam",
+            "hostname": "https://store.steampowered.com/",
+            "status": "",
+            "response_code": 200,
+            "response_time_ms": 0.119936
+        },
+        {
+            "name": "twitter",
+            "hostname": "https://twitter.com/",
+            "status": "",
+            "response_code": 200,
+            "response_time_ms": 0.119936
+        },
+        {
+            "name": "Server Test",
+            "hostname": "http://danielduesendieb.pythonanywhere.com",
+            "status": "",
+            "response_code": 200,
+            "response_time_ms": 0.119936
+        }
+    ]
+}
